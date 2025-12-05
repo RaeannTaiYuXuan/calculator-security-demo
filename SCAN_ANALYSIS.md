@@ -31,3 +31,25 @@
 - **Critical**: Implement `X-Content-Type-Options` to prevent MIME-sniffing attacks.
 - **Important**: Set the `Permissions-Policy` header to enhance privacy and security.
 - **Low priority**: Ensure that the server does not leak version information via the HTTP response headers.
+
+# Scanner Comparison
+
+## Only CodeQL (SAST) Found
+- Code patterns and logic errors
+- Data flow vulnerabilities (not identified by DAST or SCA).
+
+## Only ZAP (DAST) Found
+- Missing security headers (e.g., X-Content-Type-Options, Strict-Transport-Security).
+- Runtime configuration issues (e.g., improper HTTP methods, insecure HTTP methods).
+- API endpoint vulnerabilities (e.g., SQL Injection, Cross-Site Scripting).
+
+## Only Dependency-Check (SCA) Found
+- Outdated package versions
+- Known CVEs in dependencies
+
+## All Three Tools
+- Unlikely to overlap, as each tool focuses on different layers of security:
+  - SAST (CodeQL) checks the source code.
+  - SCA (Dependency Check) checks the third-party dependencies.
+  - DAST (ZAP) checks the runtime application.
+ 
